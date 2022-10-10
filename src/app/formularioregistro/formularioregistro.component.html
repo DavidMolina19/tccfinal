@@ -12,7 +12,7 @@
             <span class="input-group-text">
                 <i class="bi bi-box-seam-fill"></i>
             </span>
-            <input type="text" class="form-control" placeholder="IUP" formControlName="iup">
+            <input type="text" class="form-control" placeholder="IUP" formControlName="iup" (blur)="buscarMercancia()">
         </div>
         <div *ngIf="formulario.get('iup')?.touched && formulario.get('iup')?.errors?.['required']" class="form-text text-danger fw-bold">Este campo es obligatorio</div>
         <div *ngIf="formulario.get('iup')?.touched && formulario.get('iup')?.errors?.['minlength']" class="form-text text-danger fw-bold">este campo debe tener almenos 6 caracteres</div>
@@ -142,11 +142,10 @@
     <div class="mb-3 mt-5">
         <h4>Ubicación en cuarto: </h4>
         <hr>
-        <select class="form-select">
-            <option selected>Zona: </option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+        <select class="form-select" *ngIf="controlDeZona" >
+            <option selected>Seleccione una Zona: </option>
+            <option value="" *ngFor="let zona of datosZonas">{{zona.nombre}}</option>
+           
         </select>
     </div>
 
